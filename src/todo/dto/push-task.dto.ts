@@ -1,8 +1,13 @@
 import { IsNotEmpty } from 'class-validator';
 
-export class AddTaskDto {
+export class PushTaskDto {
   @IsNotEmpty()
-  text: string;
+  taskId: string;
 
-  deadline?: string;
+  dropTaskId?: string;
+  direction?: 'bottom' | 'top';
+  order?: number;
+
+  @IsNotEmpty()
+  prevTodoId: string;
 }

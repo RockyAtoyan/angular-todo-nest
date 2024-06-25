@@ -1,8 +1,6 @@
 import { IsNotEmpty } from 'class-validator';
 
-export class AddTaskDto {
+export class UpdateTodoDto {
   @IsNotEmpty()
   text: string;
-
-  deadline?: string;
 }

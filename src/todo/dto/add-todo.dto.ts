@@ -1,6 +1,8 @@
 import { IsNotEmpty } from 'class-validator';
 
-export class AddTaskDto {
+export class AddTodoDto {
   @IsNotEmpty()
   text: string;
+
+  roomId?: string;
 }

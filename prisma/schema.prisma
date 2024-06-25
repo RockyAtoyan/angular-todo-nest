@@ -12,3 +12,66 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id         String  @id() @default(uuid())
+  login      String  @unique
+  password   String
+  image      String?
+  todos      Todo[]
+  adminRooms Room[]  @relation("admin")
+  rooms      Room[]  @relation("member")
+  orders     Order[]
+}
+
+model Todo {
+  id        String   @id() @default(uuid())
+  text      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+  tasks     Task[]
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  order     Int      @default(autoincrement())
+  room      Room?    @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  roomId    String?
+}
+
+model Task {
+  id        String   @id() @default(uuid())
+  text      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+
+  isDone   Boolean   @default(false)
+  deadline DateTime?
+
+  todoId String
+  todo   Todo   @relation(fields: [todoId], references: [id], onDelete: Cascade)
+
+  order Int @default(autoincrement())
+}
+
+model Room {
+  id     String @id() @default(uuid())
+  name   String
+  admin  User   @relation(fields: [userId], references: [id], name: "admin", onDelete: Cascade)
+  userId String
+
+  users User[] @relation(name: "member")
+
+  todos  Todo[]
+  orders Order[]
+}
+
+model Order {
+  id String @id() @default(uuid())
+
+  room   Room   @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  roomId String
+
+  invited   User   @relation(fields: [invitedId], references: [id], onDelete: Cascade)
+  invitedId String
+
+  createdAt DateTime @default(now())
+}

@@ -7,9 +7,8 @@ import cookieParser from 'cookie-parser';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.enableCors({
-    origin: ['https://angular-todo-2fa64.web.app'],
+    origin: true,
     credentials: true,
-    preflightContinue: true
   });
   app.use(cookieParser());
   app.useGlobalPipes(new ValidationPipe());

@@ -9,6 +9,7 @@ async function bootstrap() {
   app.enableCors({
     origin: ['https://angular-todo-2fa64.web.app'],
     credentials: true,
+    preflightContinue: true
   });
   app.use(cookieParser());
   app.useGlobalPipes(new ValidationPipe());

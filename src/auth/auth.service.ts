@@ -108,7 +108,7 @@ export class AuthService {
   }
 
   logout(res: Response) {
-    res.clearCookie('refreshToken');
+    res.clearCookie('refreshToken', { sameSite: 'none', secure: true });
     return res.json('ok');
   }
 

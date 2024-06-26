@@ -20,7 +20,7 @@ async function bootstrap() {
       'Accept',
       'Authorization',
     ],
-    credentials: true,
+    //credentials: true,
   });
   app.use(cookieParser());
   app.useGlobalPipes(new ValidationPipe());

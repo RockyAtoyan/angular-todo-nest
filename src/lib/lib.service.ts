@@ -6,7 +6,7 @@ export class LibService {
   generateTokens(payload: any) {
     return {
       accessToken: sign(payload, process.env.ACCESS_SECRET, {
-        expiresIn: '10s',
+        expiresIn: '1d',
       }),
       refreshToken: sign(payload, process.env.REFRESH_SECRET, {
         expiresIn: '2d',

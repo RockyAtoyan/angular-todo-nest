@@ -5,7 +5,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import * as cookieParser from 'cookie-parser';
 import { Request, Response, NextFunction } from 'express';
 
-const frontUrl = '*';
+const frontUrl = 'https://angular-todo-2fa64.web.app';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -20,7 +20,7 @@ async function bootstrap() {
       'Accept',
       'Authorization',
     ],
-    //credentials: true,
+    credentials: true,
   });
   app.use(cookieParser());
   app.useGlobalPipes(new ValidationPipe());

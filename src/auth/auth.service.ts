@@ -98,7 +98,11 @@ export class AuthService {
       login,
       id: user.id,
     });
-    res.cookie('refreshToken', refreshToken, { maxAge: 1000 * 60 * 60 * 48 });
+    res.cookie('refreshToken', refreshToken, {
+      maxAge: 1000 * 60 * 60 * 48,
+      sameSite: 'none',
+      secure: true,
+    });
     const { password: pass, ...rest } = user;
     return res.json({ user: rest, accessToken });
   }

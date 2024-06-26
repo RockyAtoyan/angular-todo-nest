@@ -5,7 +5,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import * as cookieParser from 'cookie-parser';
 import { Request, Response, NextFunction } from 'express';
 
-const frontUrl = true;
+const frontUrl = '*';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
